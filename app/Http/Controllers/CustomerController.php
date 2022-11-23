@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\CustomerResource;
 use App\Models\Customer;
 use App\Models\User;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -17,7 +19,18 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        //
+        try {
+            return response([
+                'status' => 'Ok',
+                'message' => 'Customer registered successfully',
+                'data' => CustomerResource::collection(Customer::latest()->get())
+            ], 201);
+        } catch (Exception $e) {
+            return response([
+                'status' => 'Error',
+                'message' => 'Something went wrong'
+            ], 201);
+        }
     }
 
     /**
