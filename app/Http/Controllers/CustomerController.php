@@ -115,6 +115,26 @@ class CustomerController extends Controller
      */
     public function destroy($id)
     {
-        //
+        DB::beginTransaction();
+        try {
+            $customer = Customer::findOrFail($id);
+
+            $user = $customer->user;
+            $customer->delete();
+            $user->delete();
+
+            DB::commit();
+        } catch (Exception $e) {
+            DB::rollback();
+            return response([
+                'status' => 'Error',
+                'message' => "Something went wrong! " . $e->getMessage()
+            ], 500);
+        }
+
+        return response([
+            'status' => 'Ok',
+            'message' => 'Customer removed successfully'
+        ], 200);
     }
 }
