@@ -115,7 +115,48 @@ class CustomerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required',
+            'email' => 'required',
+            'phone_number' => 'required',
+            'address_1' => 'required',
+            'address_2' => 'nullable',
+            'state' => 'required',
+            'local_government' => 'required'
+        ]);
+
+        DB::beginTransaction();
+        try {
+            $customer = Customer::findOrFail($id);
+            $user = $customer->user;
+
+            $user->update([
+                'name' => $validated['name'],
+                'email' => $validated['email'],
+            ]);
+
+            $customer->update([
+                'phone_number' => $validated['phone_number'],
+                'address_1' => $validated['address_1'],
+                'address_2' => $validated['address_2'],
+                'state' => $validated['state'],
+                'local_government' => $validated['local_government'],
+            ]);
+
+            DB::commit();
+        } catch (Exception $e) {
+            DB::rollback();
+            return response([
+                'status' => 'Error',
+                'message' => "Something went wrong! " . $e->getMessage()
+            ], 500);
+        }
+
+        return response([
+            'status' => 'Ok',
+            'message' => 'Customer updated successfully',
+            'data' => CustomerResource::collection(Customer::latest()->get())
+        ], 200);
     }
 
     /**
