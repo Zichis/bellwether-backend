@@ -24,3 +24,4 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::middleware('auth:sanctum')->post('/customers', [CustomerController::class, 'store']);
 Route::middleware('auth:sanctum')->get('/customers', [CustomerController::class, 'index']);
 Route::middleware('auth:sanctum')->delete('/customers/{id}', [CustomerController::class, 'destroy']);
+Route::middleware('auth:sanctum')->get('/customers/{id}', [CustomerController::class, 'show']);

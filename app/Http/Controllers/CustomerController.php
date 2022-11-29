@@ -92,7 +92,18 @@ class CustomerController extends Controller
      */
     public function show($id)
     {
-        //
+        try {
+            return response([
+                'status' => 'Ok',
+                'message' => 'Customer registered successfully',
+                'data' => new CustomerResource(Customer::findOrFail($id))
+            ], 201);
+        } catch (Exception $e) {
+            return response([
+                'status' => 'Error',
+                'message' => 'Something went wrong'
+            ], 201);
+        }
     }
 
     /**
