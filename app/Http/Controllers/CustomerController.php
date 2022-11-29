@@ -134,7 +134,8 @@ class CustomerController extends Controller
 
         return response([
             'status' => 'Ok',
-            'message' => 'Customer removed successfully'
+            'message' => 'Customer removed successfully',
+            'data' => CustomerResource::collection(Customer::latest()->get())
         ], 200);
     }
 }
