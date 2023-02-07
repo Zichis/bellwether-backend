@@ -30,3 +30,4 @@ Route::middleware('auth:sanctum')->delete('/customers/{id}', [CustomerController
 Route::middleware('auth:sanctum')->get('/customers/{id}', [CustomerController::class, 'show']);
 Route::middleware('auth:sanctum')->patch('/customers/{id}', [CustomerController::class, 'update']);
 Route::middleware('auth:sanctum')->get('/pending-customers', [PendingCustomerController::class, 'index']);
+Route::middleware('auth:sanctum')->get('/pending-customers/{id}', [PendingCustomerController::class, 'show']);
