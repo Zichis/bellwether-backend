@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Http\Resources\PendingCustomerResource;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
