@@ -37,7 +37,7 @@ class PendingCustomerController extends Controller
      */
     public function show($id)
     {
-        //
+        return new PendingCustomerResource(PendingCustomer::find($id));
     }
 
     /**
