@@ -25,7 +25,7 @@ class CustomerRegistrationController extends Controller
             'email' => ['required', 'email', 'unique:users,email', 'unique:pending_customers,email'],
             'phone' => ['required'],
             'address_1' => ['required', 'string'],
-            'address_2' => ['string'],
+            'address_2' => [],
             'location_type' => ['required'],
             'state' => ['required'],
             'local_government' => ['required'],
