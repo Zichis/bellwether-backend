@@ -31,3 +31,5 @@ Route::middleware('auth:sanctum')->get('/customers/{id}', [CustomerController::c
 Route::middleware('auth:sanctum')->patch('/customers/{id}', [CustomerController::class, 'update']);
 Route::middleware('auth:sanctum')->get('/pending-customers', [PendingCustomerController::class, 'index']);
 Route::middleware('auth:sanctum')->get('/pending-customers/{id}', [PendingCustomerController::class, 'show']);
+// TODO: Fix auth issue
+Route::post('/pending-customers/{id}/approve', [PendingCustomerController::class, 'approve']);
