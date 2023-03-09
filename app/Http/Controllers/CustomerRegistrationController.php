@@ -18,14 +18,14 @@ class CustomerRegistrationController extends Controller
     public function __invoke(Request $request)
     {
         $data = $request->validate([
-            'avatar'   => ['required', 'image', 'max:5000'],
+            'avatar'   => ['nullable', 'image', 'max:5000'],
             'id_photo'   => ['required', 'image', 'max:5000'],
             'signature'   => ['required', 'image', 'max:5000'],
             'name' => ['required', 'string'],
             'email' => ['required', 'email', 'unique:users,email', 'unique:pending_customers,email'],
             'phone' => ['required'],
             'address_1' => ['required', 'string'],
-            'address_2' => [],
+            'address_2' => ['nullable'],
             'location_type' => ['required'],
             'state' => ['required'],
             'local_government' => ['required'],
@@ -37,10 +37,12 @@ class CustomerRegistrationController extends Controller
         DB::beginTransaction();
         try {
             // Avatar
-            $file = $request->file('avatar');
-            $name = '/avatars/' . uniqid() . '.' . $file->extension();
-            $file->storePubliclyAs('public', $name);
-            $data['avatar'] = $name;
+            if ($request->has('avatar')) {
+                $file = $request->file('avatar');
+                $name = '/avatars/' . uniqid() . '.' . $file->extension();
+                $file->storePubliclyAs('public', $name);
+                $data['avatar'] = $name;
+            }
 
             // Id Photo
             $file = $request->file('id_photo');
