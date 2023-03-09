@@ -100,5 +100,10 @@ class PendingCustomerController extends Controller
                 'data' => $pendingCustomer,
             ], 500);
         }
+
+        return response([
+            'status' => 'Success',
+            'message' => "Customer registration approved!",
+        ], 200);
     }
 }
