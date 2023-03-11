@@ -3,7 +3,9 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\CustomerRegistrationController;
+use App\Http\Controllers\LocationTypeController;
 use App\Http\Controllers\PendingCustomerController;
+use App\Http\Controllers\ServicePlanController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -32,3 +34,5 @@ Route::middleware('auth:sanctum')->patch('/customers/{id}', [CustomerController:
 Route::middleware('auth:sanctum')->get('/pending-customers', [PendingCustomerController::class, 'index']);
 Route::middleware('auth:sanctum')->get('/pending-customers/{id}', [PendingCustomerController::class, 'show']);
 Route::middleware('auth:sanctum')->post('/pending-customers/{id}/approve', [PendingCustomerController::class, 'approve']);
+Route::get('/location-types', [LocationTypeController::class, 'index']);
+Route::get('/service-plans', [ServicePlanController::class, 'index']);
