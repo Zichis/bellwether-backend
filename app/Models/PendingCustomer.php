@@ -15,14 +15,14 @@ class PendingCustomer extends Model
         "phone",
         "address_1",
         "address_2",
-        "location_type",
+        "location_type_id",
         "state",
         "local_government",
         "community",
         "avatar",
         "id_photo",
         "signature",
-        "service_plan",
+        "service_plan_id",
         "referral_code",
     ];
 }
