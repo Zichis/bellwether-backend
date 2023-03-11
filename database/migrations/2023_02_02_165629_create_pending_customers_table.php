@@ -20,14 +20,14 @@ return new class extends Migration
             $table->string("phone");
             $table->string("address_1");
             $table->string("address_2")->nullable();
-            $table->string("location_type");
+            $table->foreignId("location_type_id");
             $table->string("state");
             $table->string("local_government");
             $table->string("community")->nullable();
             $table->string("avatar")->nullable();
             $table->string("id_photo");
             $table->string("signature");
-            $table->string("service_plan");
+            $table->foreignId("service_plan_id");
             $table->string("referral_code")->nullable();
             $table->timestamps();
         });

@@ -26,12 +26,12 @@ class CustomerRegistrationController extends Controller
             'phone' => ['required'],
             'address_1' => ['required', 'string'],
             'address_2' => ['nullable'],
-            'location_type' => ['required'],
+            'location_type_id' => ['required'],
             'state' => ['required'],
             'local_government' => ['required'],
             'community' => ['required', 'string'],
             'referral_code' => ['string'],
-            'service_plan' => ['required', 'string'],
+            'service_plan_id' => ['required'],
         ]);
 
         DB::beginTransaction();
